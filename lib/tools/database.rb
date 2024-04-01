@@ -16,7 +16,7 @@ module Tools
 
       file_path = File.join(backup_folder, "#{file_name}#{file_suffix}.sql")
 
-      cmd = "PGPASSWORD='#{password}' pg_dump -F p -v -O -U '#{user}' -h '#{host}' -d '#{database}' -f '#{file_path}' -p '#{port}' "
+      cmd = "PGPASSWORD='#{password}' pg_dump --inserts --column-inserts --disable-triggers -F p -v -O -U '#{user}' -h '#{host}' -d '#{database}' -f '#{file_path}' -p '#{port}' "
       debug ? system(cmd) : system(cmd, err: File::NULL)
 
       hooks.after_dump
